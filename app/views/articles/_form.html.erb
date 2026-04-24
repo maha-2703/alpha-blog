@@ -1,0 +1,45 @@
+<div class="container mt-4">
+ <%= render 'shared/errors', obj: @article %>
+
+  <div class="row justify-content-center">
+    <div class="col-8">
+
+      <!-- 🔵 Card Box -->
+      <div class="card bg-info text-white p-4 shadow">
+
+        <%= form_with model: @article, data: { turbo: false } do |f| %>
+
+          <!-- 📝 Title -->
+          <div class="mb-3">
+            <%= f.label :title, class: "form-label" %>
+            <%= f.text_field :title,
+                class: "form-control",
+                placeholder: "Enter article title..." %>
+          </div>
+
+          <!-- 📄 Description -->
+          <div class="mb-3">
+            <%= f.label :description, class: "form-label" %>
+            <%= f.text_area :description,
+                rows: 10,
+                class: "form-control",
+                placeholder: "Enter article description..." %>
+          </div>
+
+          <!-- 🚀 Submit -->
+          <div class="text-center">
+            <%= f.submit "Save Article", class: "btn btn-light btn-lg" %>
+          </div>
+
+        <% end %>
+
+      </div>
+
+      <!-- 🔙 Cancel -->
+      <div class="text-center mb-3">
+        <%= link_to "[Cancel and return to articles]", articles_path, class: "text-decoration-none" %>
+      </div>
+
+    </div>
+  </div>
+</div>
