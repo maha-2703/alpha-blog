@@ -2,7 +2,7 @@
   <div class="alert alert-danger alert-dismissible fade show" role="alert">
     
     <h5 class="alert-heading">
-      <%= pluralize(obj.errors.count, "error") %> prevented saving:
+      <%= pluralize(obj.errors.count, "error") %> prevented saving <%= obj.class.name.downcase %>
     </h5>
 
     <ul class="mb-0">
