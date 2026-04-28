@@ -36,7 +36,7 @@
 
           <!-- 🚀 Submit -->
           <div class="text-center">
-            <%= f.submit "Sign up", class: "btn btn-outline-light btn-lg" %>
+            <%= f.submit(@user.new_record? ? "Sign up" : "update account", class: "btn btn-outline-light btn-lg") %>
           </div>
 
         <% end %>
