@@ -1,16 +1,57 @@
-<p style="color: green"><%= notice %></p>
+<h1 class="text-center mt-4">Alpha Bloggers</h1>
 
-<% content_for :title, "Users" %>
-
-<h1>Users</h1>
-
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+<div class="flickr_pagination">
+  <%= will_paginate @users, container: false %>
 </div>
 
-<%= link_to "New user", new_user_path %>
+<div class="container mt-4">
+
+<% @users.each do |user| %>
+
+  <div class="row justify-content-md-center">
+    <div class="col-8 mt-4">
+
+      <div class="card text-center shadow mb-5 bg-white rounded">
+
+        <div class="card-header font-italic">
+          <%= user.username %>
+        </div>
+
+        <div class="card-body">
+
+          <%= link_to gravatar_for(user, size: 100), user %>
+
+          <p>
+            <%= pluralize(user.articles.count, "article") %>
+          </p>
+
+          <%= link_to "View Profile", user, class: "btn btn-outline-success" %>
+
+          <% if logged_in? %>
+          <% if  user == current_user %>
+              <%= link_to "Edit Profile", edit_user_path(user), class: "btn btn-outline-info" %>
+          <% end %>
+          <% if current_user.admin? %>
+              <%= link_to "Delete User", user_path(user), class: "btn btn-outline-danger",
+      data: { turbo_method: :delete, turbo_confirm:"Are you sure?" } %>
+   <% end %>
+   <% end %>
+           
+ </div>
+
+        <div class="card-footer">
+          Joined <%= time_ago_in_words(user.created_at) %> ago
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+<% end %>
+
+</div>
+
+<div class="flickr_pagination mb-4">
+  <%= will_paginate @users, container: false %>
+</div>

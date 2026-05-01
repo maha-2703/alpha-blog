@@ -1,3 +1,6 @@
+
+
+
 <div class="container mt-4">
 <% @articles.each do |article| %>
 
@@ -7,7 +10,9 @@
 <div class="card text-center shadow mb-5 bg-white rounded">
 
 <div class="card-header font-italic">
-By <%= article.user.username if article.user %>
+<% if article.user %>
+    By <%= link_to article.user.username, user_path(article.user) %>
+<% end %>
 </div>
 
 <div class="card-body">
@@ -22,11 +27,12 @@ By <%= article.user.username if article.user %>
 
 <%= link_to "View", article_path(article), class: "btn btn-outline-success" %>
 
-<%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-info" %>
-
-<%= link_to "Delete", article_path(article),
-data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
-class: "btn btn-outline-danger" %>
+<% if logged_in? && (article.user == current_user || current_user.admin?) %>
+   <%= link_to "Edit", edit_article_path(article), class: "btn btn-outline-info" %>
+   <%= link_to "Delete", article_path(article),
+   data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+   class: "btn btn-outline-danger" %>
+<% end %>
 
 </div>
 
