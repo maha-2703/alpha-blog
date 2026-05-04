@@ -12,6 +12,7 @@ class CategoriesController < ApplicationController
         redirect_to @category
     else 
         render 'new'
+    
     end
   end
 
@@ -19,6 +20,7 @@ class CategoriesController < ApplicationController
    end 
 
    def show 
+    @category = Category.find(params[:id])
    end
 
    def category_params
