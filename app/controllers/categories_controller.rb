@@ -12,11 +12,11 @@ class CategoriesController < ApplicationController
         redirect_to @category
     else 
         render 'new'
-    
-    end
+     end
   end
 
    def index 
+       @categories = Category.paginate(page: params[:page], per_page: 3)
    end 
 
    def show 
