@@ -26,6 +26,17 @@
                 placeholder: "Enter article description..." %>
           </div>
 
+          <!-- 📄 Category -->
+          <div class="mb-3">
+            <%= f.label :Category, class: "form-label" %>
+            <div class="col-10">
+            <%= f.collection_select :category_ids, Category.all, :id, :name,{},
+           { multiple: true, size: 5, class: "form-control shadow rounded" } %>
+         </div>
+          </div>
+
+
+          
           <!-- 🚀 Submit -->
           <div class="text-center">
             <%= f.submit "Save Article", class: "btn btn-light btn-lg" %>

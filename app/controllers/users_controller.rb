@@ -9,10 +9,7 @@ class UsersController < ApplicationController
   end
 
   def show
-  
-  
-  @articles = Article.paginate(page: params[:page], per_page: 5)
-
+     @articles = Article.paginate(page: params[:page], per_page: 5)
   end
 
   def new

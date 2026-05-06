@@ -19,6 +19,8 @@
 
 <h5 class="card-title">
 <%= link_to category.name, category_path(category), class: "text-success" %>
+<p> <%= pluralize(category.articles.count, "article") %>  </p>
+         
 </h5>
 </div>
 
